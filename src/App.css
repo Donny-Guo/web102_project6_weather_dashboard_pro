@@ -6,6 +6,15 @@ p {
   margin: 0;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
 body::before {
   position: fixed;
   content:"";

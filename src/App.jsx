@@ -40,7 +40,7 @@ function App() {
   return (
     <main>
       <header>
-        <a className="home-link">
+        <a className="home-link" href="https://astro-weather-dashboard.netlify.app/">
           <img 
             src="/icon.png"
             width="18px"
@@ -49,9 +49,9 @@ function App() {
             WeatherDash
           </div>
         </a>
-        <a>Dashboard</a>
-        <a>Search</a>
-        <a>About</a>
+        <a href="https://astro-weather-dashboard.netlify.app/">Dashboard</a>
+        <a href="https://astro-weather-dashboard.netlify.app/">Search</a>
+        <a href="https://astro-weather-dashboard.netlify.app/">About</a>
       </header>
 
       {data.length > 0 && (
