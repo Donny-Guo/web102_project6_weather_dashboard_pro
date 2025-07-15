@@ -1,23 +1,102 @@
+body {
+  color: white;
+}
+
+p {
+  margin: 0;
+}
+
+body::before {
+  position: fixed;
+  content:"";
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background-image: url("/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+main {
+  padding-top: 60px;
+}
+
 header {
   display: flex;
   justify-content: space-between;
   margin-bottom: 50px;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 44%;
+  min-width: 350px;
+  max-width: 500px;
 }
 
 .card-section {
   display: flex;
-  justify-content: space-between;
-  background-color: lightpink;
-  margin-bottom: 50px;
+  justify-content: center;
+  column-gap: 40px;
+  margin-bottom: 30px;
+  color: black;
 }
 
 .filter-section {
   display: flex;
   align-items: center;
+  justify-content: center;
+  column-gap: 30px;
+  margin-bottom: 10px;
+}
+
+.filter-label {
+  color: white;
+  margin-bottom: 5px;
+}
+
+.date-filter, .humidity-filter {
+
+}
+
+.filter-button, .reset-button {
+  padding: 5px 5px;
+  font-size: 1.1rem;
 }
 
 .forecast-section {
   display: flex;
   justify-content: center;
   text-align: center;
+  padding-bottom: 30px;
+  color: white;
+
+}
+
+th {
+  width: 120px;
+  padding-top: 25px;
+  padding-bottom: 10px;
+}
+
+td {
+  padding: 5px;
+}
+
+.card {
+  background-color: lightblue;
+  border: none;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+}
+
+.card-value {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.card-description {
+  font-size: 1.5rem;
 }
