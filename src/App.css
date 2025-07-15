@@ -1,4 +1,23 @@
 header {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.card-section {
+  display: flex;
+  justify-content: space-between;
+  background-color: lightpink;
+  margin-bottom: 50px;
+}
+
+.filter-section {
+  display: flex;
+  align-items: center;
+}
+
+.forecast-section {
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
