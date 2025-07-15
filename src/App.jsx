@@ -8,7 +8,7 @@ function App() {
   const [humidity, setHumidity] = useState(30);
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
-  
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Fresno,CA?key=${WEATHERBIT_API_KEY}&include=days`);
@@ -40,7 +40,15 @@ function App() {
   return (
     <main>
       <header>
-        <a>WeatherDash</a>
+        <a className="home-link">
+          <img 
+            src="/icon.png"
+            width="18px"
+          />
+          <div>
+            WeatherDash
+          </div>
+        </a>
         <a>Dashboard</a>
         <a>Search</a>
         <a>About</a>
