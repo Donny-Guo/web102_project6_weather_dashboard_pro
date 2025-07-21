@@ -5,7 +5,7 @@ const WEATHERBIT_API_KEY = import.meta.env.VITE_WEATHERBIT_API_KEY;
 
 function App() {
   const [date, setDate] = useState("");
-  const [humidity, setHumidity] = useState(30);
+  const [humidity, setHumidity] = useState(100);
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
 
@@ -20,12 +20,16 @@ function App() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    filterForecast();
+  }, [date, humidity]);
+
   const filterForecast = () => {
     // filter by date and humidity
     setFilteredData(data.filter(item => {
       if (date) {
         return (
-          (item.datetime === date) && (item.humidity <= humidity)
+          (item.datetime.includes(date)) && (item.humidity <= humidity)
         )
       } else {
         return (item.humidity <= humidity);
@@ -35,6 +39,8 @@ function App() {
 
   const resetFilter = () => {
     setFilteredData(data);
+    setDate("");
+    setHumidity(100);
   }
 
   return (
@@ -85,7 +91,9 @@ function App() {
                 type="text"
                 placeholder='Enter date'
                 value={date}
-                onChange={(e) => setDate(e.currentTarget.value)}
+                onChange={(e) => {
+                  setDate(e.currentTarget.value);
+                }}
               />
             </div>
 
@@ -102,13 +110,6 @@ function App() {
                 onChange={(e) => setHumidity(e.currentTarget.value)}
               />
             </div>
-
-            <button
-              onClick={filterForecast}
-              className="filter-button"
-            >
-              Filter
-            </button>
 
             <button
               className="reset-button"
