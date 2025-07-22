@@ -150,7 +150,7 @@ function App() {
                   <XAxis dataKey="datetime" tick={{ stroke: 'rgb(192, 188, 188)', strokeWidth: 1 }} />
                   <YAxis tick={{ stroke: 'rgb(192, 188, 188)', strokeWidth: 1 }} />
                   <Tooltip />
-                  <Legend />
+                  <Legend align="right"/>
                   <Bar dataKey="visibility" fill="#7fbbeb" name='Visibility (miles)' />
                 </BarChart>
               </div>

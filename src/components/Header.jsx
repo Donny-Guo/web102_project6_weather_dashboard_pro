@@ -1,7 +1,8 @@
+import { Link } from "react-router"
 export default function Header() {
   return (
     <header>
-      <a className="home-link" href="https://astro-weather-dashboard.netlify.app/">
+      <Link className="home-link" to="/">
         <img
           src="/icon.png"
           width="18px"
@@ -9,10 +10,10 @@ export default function Header() {
         <div>
           WeatherDash
         </div>
-      </a>
-      <a href="https://astro-weather-dashboard.netlify.app/">Dashboard</a>
-      <a href="https://astro-weather-dashboard.netlify.app/">Search</a>
-      <a href="https://astro-weather-dashboard.netlify.app/">About</a>
+      </Link>
+      <Link to="/">Dashboard</Link>
+      <Link to="/">Search</Link>
+      <Link to="/">About</Link>
     </header>
   )
 }

@@ -14,20 +14,20 @@ export default function DetailView() {
           conditions} = detailInfo[0];
     detailElements = (
       <>
-        <p>Temperature (&#8457;): {tempmin}-{tempmax}</p>
-        <p>Humidity (%): {humidity}</p>
-        <p>CloudCover (%): {cloudcover}</p>
-        <p>Visibility (miles): {visibility}</p>
-        <p>Sunset: {sunset}</p>
-        <p>Overall conditions: {conditions}</p>
+        <h3>Temperature: {tempmin}-{tempmax} &#8457;</h3>
+        <h3>Humidity: {humidity} %</h3>
+        <h3>CloudCover: {cloudcover} %</h3>
+        <h3>Visibility: {visibility} {visibility > 0 ? "miles" : "mile"}</h3>
+        <h3>Sunset: {sunset}</h3>
+        <h3>Overall conditions: {conditions}</h3>
       </>
     )
   }
 
   return (
-    <>
-      <h1>Detail info of {date}</h1>
+    <section className="detailview-section">
+      <h1>Weather Info for {date}</h1>
       {detailElements}
-    </>
+    </section>
   )
 }
