@@ -3,6 +3,7 @@ import './App.css'
 import Card from './components/Card';
 import { Link } from 'react-router';
 import { DataContext } from './components/Layout.jsx'
+import { BarChart, Bar, LineChart, Line, CartesianGrid, XAxis, YAxis, Legend, Tooltip } from 'recharts';
 
 function App() {
   const [date, setDate] = useState("");
@@ -98,35 +99,67 @@ function App() {
               Reset
             </button>
           </section>
-
-          <section className="forecast-section">
-            <table>
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Temperature (&#8457;)</th>
-                  <th>Humidity (%)</th>
-                  <th>Visibility (miles)</th>
-                  <th>Cloud Cover (%)</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredData.map(item => (
-                  <tr key={item.datetime}>
-                    <td>
-                      <Link to={`/${item.datetime}`} className="date-label">
-                        {item.datetime}
-                      </Link>
-                    </td>
-                    <td>{item.temp}</td>
-                    <td>{item.humidity}</td>
-                    <td>{item.visibility}</td>
-                    <td>{item.cloudcover}</td>
+          
+          <section className="main-section">
+            <section className="forecast-section">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Temperature (&#8457;)</th>
+                    <th>Humidity (%)</th>
+                    <th>Cloud Cover (%)</th>
+                    <th>Visibility (miles)</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {filteredData.map(item => (
+                    <tr key={item.datetime}>
+                      <td>
+                        <Link to={`/${item.datetime}`} className="date-label">
+                          {item.datetime}
+                        </Link>
+                      </td>
+                      <td>{item.temp}</td>
+                      <td>{item.humidity}</td>
+                      <td>{item.cloudcover}</td>
+                      <td>{item.visibility}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </section>
+            
+            <section className="chart-section">
+              <div className="chart-area">
+                <LineChart width={600} height={300} data={data} margin={{ top: 5, right: 30, bottom: 5, left: 0 }}>
+                  <CartesianGrid stroke="white" strokeDasharray="5 5" />
+                  <XAxis dataKey="datetime" tick={{ stroke: 'rgb(192, 188, 188)', strokeWidth: 1 }} />
+                  <YAxis tick={{ stroke: 'rgb(192, 188, 188)', strokeWidth: 1 }} />
+                  <Line type="monotone" dataKey="temp" stroke="purple" strokeWidth={2} name="temperature (&#8457;) " />
+                  <Line type="monotone" dataKey="humidity" stroke="blue" strokeWidth={2} name="humidity (%) " />
+                  <Line type="monotone" dataKey="cloudcover" stroke="#8884d8" strokeWidth={2} name="cloud cover (%) " />
+                  <Legend align="right" />
+                  <Tooltip />
+                </LineChart>
+              </div>
+
+              <div className="chart-area">
+                <BarChart width={600} height={300} data={data} margin={{ top: 5, right: 30, bottom: 5, left: 0 }}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="datetime" tick={{ stroke: 'rgb(192, 188, 188)', strokeWidth: 1 }} />
+                  <YAxis tick={{ stroke: 'rgb(192, 188, 188)', strokeWidth: 1 }} />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="visibility" fill="#7fbbeb" name='Visibility (miles)' />
+                </BarChart>
+              </div>
+
+            </section>
           </section>
+          
+
+          
         </>
       )}
 
