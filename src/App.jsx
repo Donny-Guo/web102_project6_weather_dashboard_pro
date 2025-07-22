@@ -1,28 +1,22 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import './App.css'
 import Card from './components/Card';
-const WEATHERBIT_API_KEY = import.meta.env.VITE_WEATHERBIT_API_KEY;
+import { Link } from 'react-router';
+import { DataContext } from './components/Layout.jsx'
 
 function App() {
   const [date, setDate] = useState("");
   const [humidity, setHumidity] = useState(100);
-  const [data, setData] = useState([]);
+  const data = useContext(DataContext);
   const [filteredData, setFilteredData] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Fresno,CA?key=${WEATHERBIT_API_KEY}&include=days`);
-      const json = await response.json();
-      const forecastData = json.days;
-      setData(forecastData);
-      setFilteredData(forecastData);
-    }
-    fetchData();
-  }, []);
 
   useEffect(() => {
     filterForecast();
   }, [date, humidity]);
+
+  useEffect(() => {
+    setFilteredData(data);
+  }, [data]);
 
   const filterForecast = () => {
     // filter by date and humidity
@@ -44,21 +38,7 @@ function App() {
   }
 
   return (
-    <main>
-      <header>
-        <a className="home-link" href="https://astro-weather-dashboard.netlify.app/">
-          <img 
-            src="/icon.png"
-            width="18px"
-          />
-          <div>
-            WeatherDash
-          </div>
-        </a>
-        <a href="https://astro-weather-dashboard.netlify.app/">Dashboard</a>
-        <a href="https://astro-weather-dashboard.netlify.app/">Search</a>
-        <a href="https://astro-weather-dashboard.netlify.app/">About</a>
-      </header>
+    <>
 
       {data.length > 0 && (
         <>
@@ -133,7 +113,11 @@ function App() {
               <tbody>
                 {filteredData.map(item => (
                   <tr key={item.datetime}>
-                    <td>{item.datetime}</td>
+                    <td>
+                      <Link to={`/${item.datetime}`} className="date-label">
+                        {item.datetime}
+                      </Link>
+                    </td>
                     <td>{item.temp}</td>
                     <td>{item.humidity}</td>
                     <td>{item.visibility}</td>
@@ -146,7 +130,7 @@ function App() {
         </>
       )}
 
-    </main>
+    </>
   )
 }
 

@@ -28,6 +28,10 @@ body::before {
   background-size: cover;
 }
 
+.date-label {
+  text-decoration: underline white;
+}
+
 main {
   padding-top: 60px;
 }
